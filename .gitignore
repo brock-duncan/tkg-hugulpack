@@ -1,0 +1,9 @@
+node_modules
+public
+dist/
+.vscode
+._*
+
+src/site/static/js
+src/site/static/css
+src/site/themes/hugulpack/layouts/_default/baseof.html

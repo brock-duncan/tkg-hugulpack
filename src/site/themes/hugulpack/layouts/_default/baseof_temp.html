@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>Hugulpack | {{ .Title }}</title>
+    </head>
+
+    <body>
+        <header>
+            <a href="/"><img src="http://placehold.it/200x60" alt="logo"></a>
+        
+            <nav>
+                <ul>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/my-work">My Work</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        {{ block "main" . }}
+            <!-- Main -->
+        {{ end }}
+
+        <footer>
+            <small>Hugo + Gulp + Webpack</small>
+        </footer>
+    </body>
+</html>
