@@ -12,5 +12,5 @@ public_folder: "/images/uploads" # The src attribute for uploaded media will beg
 collections:
   - name: "posts"
     label: "Post"
-    folder: "posts"
+    folder: "./src/site/content/posts"
     create: true
