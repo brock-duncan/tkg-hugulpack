@@ -14,3 +14,6 @@ collections:
     label: "Post"
     folder: "src/site/content/posts"
     create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
