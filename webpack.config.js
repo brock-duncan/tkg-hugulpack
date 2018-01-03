@@ -18,17 +18,6 @@ module.exports = {
         publicPath: '/',
         filename: 'js/[hash].js'
     },
-    module: {
-        rules: [
-          {
-            test: /\.scss$/,
-            use: extractTextPlugin.extract({
-              fallback: 'style-loader',
-              use: ['css-loader', 'sass-loader']
-            })
-          }
-        ]
-      },
       plugins: [
         new cleanWebpackPlugin(cleanPaths),
         new extractTextPlugin('css/[hash].css'),
@@ -36,6 +25,5 @@ module.exports = {
             template: 'src/site/themes/hugulpack/layouts/_default/baseof_temp.html',
             filename: '../themes/hugulpack/layouts/_default/baseof.html'
         })
-      ],
-      watch: false
+      ]
 };

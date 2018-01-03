@@ -7,6 +7,8 @@ const browserSync = require('browser-sync').create();
 const webpack = require('webpack');
 const webpackStream = require('webpack-stream');
 const webpackConfig = require('./webpack.config');
+const webpackDevConfig = require('./webpack.dev');
+const webpackProdConfig = require('./webpack.prod');
 const del = require('del');
 const runSeq = require('run-sequence');
 const log = console.log;
@@ -28,9 +30,7 @@ gulp.task('server', ['build'], () => {
 
 // compile sass (use webpack)
 
-
 // compile js (use webpack)
-
 
 // build site
 // 1. clean ./dist/js|css
@@ -42,7 +42,7 @@ gulp.task('clean:dist', (cb) => {
 
 // 2. run webpack
 gulp.task('webpack',  (cb) => {
-    let config = Object.assign({}, webpackConfig);
+    let config = Object.assign({}, webpackDevConfig);
     
     return webpack(config, (err, stats) => {
         if (err) {
@@ -78,6 +78,27 @@ gulp.task('hugo', () => {
 gulp.task('build', (cb) => {
     runSeq('webpack', 'hugo', () => {
         log(chalk.green('build complete'));
+        cb();
+    })
+});
+
+// build for production
+// 1. webpack - uglifyjs
+gulp.task('webpack:prod',  (cb) => {
+    let config = Object.assign({}, webpackProdConfig);
+    
+    return webpack(config, (err, stats) => {
+        if (err) {
+            new Error(err.message);
+        }
+        log(chalk.green('webpacked'));
+        cb();
+    });
+});
+// 2. then hugo
+gulp.task('build:prod', (cb) => {
+    runSeq('webpack:prod', 'hugo', () => {
+        log(chalk.green('production build complete'));
         cb();
     })
 });
