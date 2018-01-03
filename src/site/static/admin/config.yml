@@ -13,3 +13,4 @@ collections:
   - name: "posts"
     label: "Post"
     folder: "posts"
+    create: true
