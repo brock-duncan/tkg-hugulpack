@@ -4,6 +4,6 @@ dist/
 .vscode
 ._*
 
-src/site/static/js
-src/site/static/css
+src/site/themes/*/static/js
+src/site/themes/*/static/css
 src/site/themes/hugulpack/layouts/_default/baseof.html

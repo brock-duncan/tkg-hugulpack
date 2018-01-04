@@ -4,8 +4,12 @@ const uglifyJSWebpackPlugin = require('uglifyjs-webpack-plugin');
 const extractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = merge(common, {
+    output: {
+      filename: 'js/[hash].js'
+    },
     plugins: [
-        new uglifyJSWebpackPlugin()
+        new uglifyJSWebpackPlugin(),
+        new extractTextPlugin('css/[hash].css')
     ],
     module: {
         rules: [
