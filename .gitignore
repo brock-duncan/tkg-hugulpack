@@ -6,4 +6,4 @@ dist/
 
 src/site/themes/*/static/js
 src/site/themes/*/static/css
-src/site/themes/hugulpack/layouts/_default/baseof.html
+src/site/themes/*/layouts/_default/baseof.html

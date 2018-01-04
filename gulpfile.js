@@ -15,97 +15,49 @@ const webpackBin = './node_modules/.bin/webpack';
 const webpackThemePath = path.join(__dirname, 'themes/hugulpack');
 const runSeq = require('run-sequence');
 
-
-// browsersync dev server
-// gulp.task('server', ['build'], () => {
-//     browserSync.init({
-//         server: {
-//             baseDir: "./dist"
-//         }
-//     });
-//     gulp.watch(['./src/js/**/*', './src/scss/**/*'], () => { 
-//         gulp.start('build', () => {
-//             browserSync.reload();
-//         });
-//     });
-// });
-
-
-// hugo server and webpack --watch
+// webpack --watch / hugo server 
 gulp.task('dev', (cb) => {
-    // start webpack
+    // start webpack and watch
     let config = Object.assign({}, webpackDevConfig);
     let compiler = webpack(config)
     compiler.watch({}, (err, stats) => {
         log(chalk.green(stats))
     })
-    // start hugo
-    spawn('hugo', ['server'], { cwd: 'src/site', stdio: 'inherit'}, (err) => {
+    // start hugo server
+    spawn('hugo', ['server', '-D'], { cwd: 'src/site', stdio: 'inherit'}, (err) => {
         if (err) return cb(err);
         cb();
     })
 });
 
-
-// some of the build tasks below need redone and renamed
 // 
-// 
-// 
-// build site
-// 1. clean ./dist/js|css
-gulp.task('clean:dist', (cb) => {
-    return del(['./dist/js', './dist/css'], () => {
-        cb();
-    });
-})
-
-// 2. run webpack
-// gulp.task('webpack',  (cb) => {
-//     let config = Object.assign({}, webpackDevConfig);
-    
-//     return webpack(config, (err, stats) => {
-//         if (err) {
-//             new Error(err.message);
-//         }
-//         log(chalk.green('webpacked'));
-//         cb();
-//     });
-// });
-// 3. run hugo
-gulp.task('hugo', () => {
-    let hugoArgs = ['-d', '../../dist', '-s', './'];
-
-    return spawn('hugo', hugoArgs, {
-        cwd: './src/site'
-    });
-});
-// gulp.task('build', (cb) => {
-//     runSeq('webpack', 'hugo', () => {
-//         log(chalk.green('build complete'));
-//         cb();
-//     })
-// });
-
 // build for production
+// 
 // 1. webpack - uglifyjs and css min
 gulp.task('webpack:prod',  (cb) => {
     let config = Object.assign({}, webpackProdConfig);
     
     return webpack(config, (err, stats) => {
-        if (err) {
-            new Error(err.message);
-        }
+        if (err) new Error(err.message);
         log(chalk.green('webpacked'));
         cb();
     });
 });
 // 2. then hugo
+gulp.task('hugo', (cb) => {
+    let hugoArgs = ['-d', '../../dist', '-s', './'];
+
+    spawn('hugo', hugoArgs, {
+        cwd: './src/site'
+    });
+    cb();
+});
+// 3. build
 gulp.task('build', (cb) => {
     runSeq('webpack:prod', 'hugo', () => {
         log(chalk.green('production build complete'));
         cb();
     })
 });
-
-
+// default
 gulp.task('default', ['dev'], () => {});
