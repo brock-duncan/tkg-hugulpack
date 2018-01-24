@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
 const extractTextPlugin = require('extract-text-webpack-plugin');
 const cleanWebpackPlugin = require('clean-webpack-plugin');
@@ -13,12 +14,19 @@ const cleanPaths = [
 
 module.exports = {
     entry: {
-        app: './src/js/app.js'
+        app: './src/js/app.js',
+        vendor: [
+            'script-loader!jquery',
+            'script-loader!foundation-sites/dist/js/foundation.min.js'
+        ]
     },
     output: {
         path: path.join(hugoThemePath, '/static'),
         publicPath: '/'
     },
+    externals: [
+        'foundation-sites'
+    ],
     module: {
         rules: [
             {
@@ -40,6 +48,10 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.bundle.js'
+        }),
         new cleanWebpackPlugin(cleanPaths),
         new htmlWebpackPlugin({
             template: path.join(hugoThemePath, '/layouts/_default/baseof_temp.html'),

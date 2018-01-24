@@ -1,11 +1,26 @@
+// Foundation-Sites SASS
+@import '~foundation-sites/scss/util/util';
+@import 'vendor/settings'; // This is our copy of foundation's settings
+@import '~foundation-sites/scss/foundation';
+@include foundation-everything;
+// Partials
 @import 'partials/header';
 
+// Styles here
 body {
-    background: black;
-    color: white;
 
     main {
-        background: blue;
-        padding: 2rem;
+        @include flex-grid-row;
+        
+        .content {
+            @include flex-grid-column(12);
+        }
+    }
+
+    .reveal {
+
+        a[data-close] {
+            float: right;
+        }
     }
 }

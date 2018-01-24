@@ -1,14 +1,12 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.config')
 const extractTextPlugin = require('extract-text-webpack-plugin');
+const path = require('path');
 
 module.exports = merge(common, {
   output: {
     filename: 'js/app.js'
   },
-  plugins: [
-    new extractTextPlugin('css/styles.css'),
-  ],
   devtool: 'inline-source-map',
   module: {
     rules: [
@@ -28,11 +26,14 @@ module.exports = merge(common, {
               loader: 'sass-loader',
               options: {
                 sourceMap: true
-              }
+              },
             }
           ]
         })
       }
     ]
-  }
+  },
+  plugins: [
+    new extractTextPlugin('css/styles.css'),
+  ]
 })
