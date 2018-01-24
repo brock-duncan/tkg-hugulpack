@@ -16,7 +16,9 @@ body {
             @include flex-grid-column(12);
         }
     }
-
+    footer {
+        @include flex-grid-row;
+    }
     .reveal {
 
         a[data-close] {
