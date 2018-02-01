@@ -5,3 +5,4 @@ $(function() {
     $(document).foundation();
 });
 
+alert('hi josh!');
