@@ -1,0 +1,16 @@
+{{ define "main" }}
+    <main>
+        <div class="content">
+            <div class="cell">
+                <h1>This is the posts list template</h1>
+            </div>
+            <div class="cell">
+                <ul>
+                    {{ range .Data.Pages }}
+                        <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
+                    {{ end }}
+                </ul>
+            </div>
+        </div>
+    </main>
+{{ end }}

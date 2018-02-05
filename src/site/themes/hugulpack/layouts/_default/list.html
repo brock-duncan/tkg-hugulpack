@@ -1,8 +1,11 @@
 {{ define "main" }}
-
-<div>
-    <h3>Here is the list template</h3>
-    {{ .Content }}
-</div>
-
-{{end}}
+<main>
+    <div class="content">
+        <ul>
+            {{ range .Data.Pages }}
+                <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
+            {{ end }}
+        </ul>
+    </div>
+</main>
+{{ end }}
