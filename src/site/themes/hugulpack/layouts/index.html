@@ -1,12 +1,14 @@
 {{ define "main" }}
-
-    <main>
-        <div class="content">
+<main>
+    <div class="content">
+        <div class="cell">
             <h1>This is the homepage template!</h1>
             {{ .Content }}
         </div>
-        <button class="button" data-open="modal">Launch Modal</button>
-        <div class="reveal" id="modal" data-reveal>modal test<a data-close>X</a></div>
-    </main>
-
+        <div class="cell">
+            <button class="button" data-open="modal">Launch Modal</button>
+        </div>
+    </div>
+    <div class="reveal" id="modal" data-reveal>modal test<a data-close>X</a></div>
+</main>
 {{ end }}
