@@ -50,7 +50,7 @@ module.exports = {
     plugins: [
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            filename: 'vendor.bundle.js'
+            filename: 'js/vendor.bundle.js'
         }),
         new cleanWebpackPlugin(cleanPaths),
         new htmlWebpackPlugin({
