@@ -1,0 +1,7 @@
+.footer {
+    @include flex-grid-row;
+
+    &__wrap {
+        @include flex-grid-column(12);
+    }
+}

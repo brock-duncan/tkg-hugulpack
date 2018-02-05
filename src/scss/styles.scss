@@ -3,21 +3,22 @@
 @import 'vendor/settings'; // This is our copy of foundation's settings
 @import '~foundation-sites/scss/foundation';
 @include foundation-everything;
+
+// Helpers
+@import 'helpers';
 // Partials
 @import 'partials/header';
+@import 'partials/footer';
 
 // Styles here
 body {
 
     main {
-        @include flex-grid-row;
+        @include xy-grid-container;
         
         .content {
-            @include flex-grid-column(12);
+            @include xy-grid;
         }
-    }
-    footer {
-        @include flex-grid-row;
     }
     .reveal {
 
