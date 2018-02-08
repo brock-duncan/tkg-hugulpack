@@ -27,9 +27,9 @@ build:
     # A step that executes `npm test` command
     # - npm-test
 
-    - maxon/npm-run
+    - maxon/npm-run:
       script: build
-      
+
     # A custom script step, name value is used in the UI
     # and the code value contains the command that get executed
     - script:
