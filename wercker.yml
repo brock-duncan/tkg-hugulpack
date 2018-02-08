@@ -40,3 +40,12 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+deploy:
+  
+  steps:
+
+    - s3sync:
+        key-id: $KEY
+        key-secret: $SECRET
+        bucket-url: $URL
+        source-dir: dist/
