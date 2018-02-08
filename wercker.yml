@@ -48,4 +48,4 @@ deploy:
         key-id: $KEY
         key-secret: $SECRET
         bucket-url: $URL
-        source-dir: dist/
+        source-dir: dist
