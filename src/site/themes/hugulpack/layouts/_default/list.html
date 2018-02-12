@@ -1,6 +1,8 @@
 {{ define "main" }}
 <main>
     <div class="content">
+        <!-- add this in -->
+        { .Content } 
         <ul>
             {{ range .Data.Pages }}
                 <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
