@@ -2,7 +2,7 @@
 <main>
     <div class="content">
         <!-- add this in -->
-        { .Content } 
+        {{ .Content }} 
         <ul>
             {{ range .Data.Pages }}
                 <li><a href="{{.Permalink}}">{{ .Title }}</a></li>
