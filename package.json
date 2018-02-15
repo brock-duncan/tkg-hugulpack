@@ -8,7 +8,8 @@
     "dev": "gulp dev",
     "build": "gulp build",
     "webpack": "gulp webpack:prod",
-    "hugo": "hugo -d ../../dist -s ./src/site/ --config ./src/site/config.toml"
+    "hugo": "hugo -d ../../dist -s ./src/site/ --config ./src/site/config.toml",
+    "index": "hugo-lunr -i \"./src/site/content/\" -o ./dist/lunr-index.json"
   },
   "repository": {
     "type": "git",
